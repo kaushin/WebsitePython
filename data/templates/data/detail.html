@@ -1,0 +1,13 @@
+{% extends 'data/site.html' %}
+{% block title %} Match Details {% endblock %}
+{% block body %}
+    
+    
+    <h1>Match History for Match ID : {{ match }}</h1>
+
+    <ul>
+        {% for item in match.hero_set.all  %}
+        <li>Hero Name : {{ item.HeroName }} </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

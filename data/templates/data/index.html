@@ -1,0 +1,32 @@
+
+{% extends 'data/site.html' %}
+
+{% block title %} Match Parser {% endblock %}
+{% block body %}
+    
+
+    {% if error_message %}
+        <p><strong> {{error_message}} </strong> </p>
+    {% endif %}
+
+    <h1>List of Matches</h1>
+    {% if matches %}
+    <form action="{% url 'data:flip_win' %}" method = "post">
+        {% csrf_token %}
+            <ul>
+                {% for match in matches %}
+                <li>
+                    <input type="radio" name="match" id="match{{ forloop.counter }}" value="{{ match.matchID }}" >
+                    <lable for="match{{ forloop.counter }}">
+                    <a href="{% url 'data:detail' match.matchID %}">  {{ match}} </a> <br>
+                    </lable>
+                </li>
+                {% endfor %}
+            </ul>
+        <input type="submit" value="Flip Win">
+    </form>
+    {% else %}
+        <h3>NO MATCHES</h3>
+    {% endif %}
+
+{% endblock %}
