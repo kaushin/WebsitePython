@@ -21,6 +21,13 @@
                     <input type="radio" name="match" id="match{{ forloop.counter }}" value="{{ match.matchID }}" >
                     <lable for="match{{ forloop.counter }}">
                     <a href="{% url 'data:detail' match.matchID %}">  {{ match}} </a> <br>
+                     <form action="{% url 'data:match-delete' match.matchID %}" method = "post" >
+                         {% csrf_token %}
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>     
+                     </form>
+                     <a href="{% url 'data:match-update' match.matchID %}">  Update </a> <br>
                     </lable>
                 </li>
                 {% endfor %}

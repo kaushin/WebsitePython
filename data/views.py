@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404
 from django.views import generic
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
-
+from django.core.urlresolvers import reverse_lazy
 from .models import Match
 
 class IndexView(generic.ListView):
@@ -21,6 +21,14 @@ class DetailView(generic.DetailView):
 class MatchCreate(CreateView):
     model = Match
     fields = ['matchID','win','time']
+
+class MatchUpdate(UpdateView):
+    model = Match
+    fields = ['matchID','win','time']
+
+class MatchDelete(DeleteView):
+    model = Match
+    success_url = reverse_lazy('data:index')
     
 
 # def index(request):
