@@ -8,9 +8,11 @@
     {% if error_message %}
         <p><strong> {{error_message}} </strong> </p>
     {% endif %}
-
+<div class="container">
     <h1>List of Matches</h1>
     {% if matches %}
+    
+    
     <form action="{% url 'data:flip_win' %}" method = "post">
         {% csrf_token %}
             <ul>
@@ -25,8 +27,9 @@
             </ul>
         <input type="submit" value="Flip Win">
     </form>
+    
     {% else %}
         <h3>NO MATCHES</h3>
     {% endif %}
-
+</div>
 {% endblock %}
